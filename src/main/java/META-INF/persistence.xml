@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence" version="2.0">
+
+    <persistence-unit name="YoursTrulyPersistenceUnit" transaction-type="RESOURCE_LOCAL">
+        <jta-data-source>jdbc/mysql</jta-data-source>
+        <class>entities.User</class>
+        <class>entities.Customer</class>
+        <properties>
+            <property name="toplink.jdbc.url" value="jdbc:mysql://192.168.99.100:3306/hungry"/>
+            <property name="toplink.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
+            <property name="hibernate.connection.url" value="jdbc:mysql://192.168.99.100:3306/hungry"/>
+            <property name="hibernate.connection.driver_class" value="com.mysql.cj.jdbc.Driver"/>
+            <property name="openjpa.ConnectionURL" value="jdbc:mysql://192.168.99.100:3306/hungry"/>
+            <property name="openjpa.ConnectionDriverName" value="com.mysql.cj.jdbc.Driver"/>
+            <property name="eclipselink.jdbc.url" value="jdbc:mysql://192.168.99.100:3306/hungry"/>
+            <property name="eclipselink.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
+        </properties>
+    </persistence-unit>
+</persistence>
