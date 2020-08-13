@@ -1,7 +1,5 @@
 package ejb;
 
-import java.util.List;
-
 import entities.User;
 import javax.ejb.Stateless;
 import javax.persistence.*;
@@ -9,7 +7,7 @@ import javax.persistence.*;
 @Stateless(name = "UserSearchEJB")
 public class UserSearchBean
 {
-    @PersistenceContext(name = "HungryPersist")
+    @PersistenceContext(name = "HungryPersistenceUnit")
     private EntityManager entityManager;
 
     public UserSearchBean(){}

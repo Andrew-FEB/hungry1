@@ -11,7 +11,10 @@ import java.io.PrintWriter;
 @WebServlet(name = "SignIn", urlPatterns = "/signIn")
 public class UserHandle extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        if (request.getAttribute("msg").equals("Invalid"))
+        {
 
+        }
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
