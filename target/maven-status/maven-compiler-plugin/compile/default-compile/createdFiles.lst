@@ -1,0 +1,4 @@
+entities\User.class
+web\SignIn.class
+entities\Customer.class
+ejb\CleanupBean.class
