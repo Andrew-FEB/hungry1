@@ -19,14 +19,17 @@
             </plugin>
         </plugins>
     </build>
-    <dependency>
-        <groupId>javax</groupId>
-        <artifactId>javaee-api</artifactId>
-        <version>8.0</version>
-        <scope>provided</scope>
-    </dependency>
 
-    <!-- jax-ws metro maven dependencies -->
+    <dependencies>
+
+        <dependency>
+            <groupId>javax</groupId>
+            <artifactId>javaee-api</artifactId>
+            <version>8.0</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- jax-ws metro maven dependencies -->
         <dependency>
             <groupId>org.glassfish.metro</groupId>
             <artifactId>webservices-rt</artifactId>
@@ -38,6 +41,7 @@
             <version>2.4.2</version>
             <scope>provided</scope>
         </dependency>
+
         <!-- https://mvnrepository.com/artifact/com.sun.xml.bind/jaxb-core -->
         <dependency>
             <groupId>com.sun.xml.bind</groupId>
@@ -46,8 +50,5 @@
         </dependency>
 
     </dependencies>
-
-
-
 
 </project>
