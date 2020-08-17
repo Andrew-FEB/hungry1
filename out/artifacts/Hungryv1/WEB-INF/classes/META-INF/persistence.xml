@@ -3,8 +3,8 @@
 
     <persistence-unit name="HungryPersistenceUnit" transaction-type="JTA">
         <jta-data-source>jdbc/mysql</jta-data-source>
-        <class>entities.User</class>
-        <class>entities.Customer</class>
+        <class>entities.UserEntity</class>
+        <class>entities.CustomerEntity</class>
         <properties>
             <property name="toplink.jdbc.url" value="jdbc:mysql://192.168.99.100:3306/hungry"/>
             <property name="toplink.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>

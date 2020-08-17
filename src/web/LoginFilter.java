@@ -1,7 +1,6 @@
 package web;
 
-import ejb.UserSearchBean;
-import entities.User;
+import ejb.DatabaseGatewayBean;
 
 import javax.ejb.EJB;
 import javax.servlet.*;
@@ -13,7 +12,7 @@ import java.io.IOException;
 public class LoginFilter implements Filter {
 
     @EJB
-    private UserSearchBean userSearch;
+    private DatabaseGatewayBean userSearch;
 
     public void destroy() {
     }

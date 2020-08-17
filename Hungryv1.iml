@@ -18,6 +18,23 @@
         </webroots>
       </configuration>
     </facet>
+    <facet type="javaeeApplication" name="javaEEApplication">
+      <configuration>
+        <descriptors>
+          <deploymentDescriptor name="application.xml" url="file://$MODULE_DIR$/META-INF/application.xml" />
+        </descriptors>
+      </configuration>
+    </facet>
+    <facet type="jpa" name="JPA">
+      <configuration>
+        <setting name="validation-enabled" value="true" />
+        <datasource-mapping>
+          <factory-entry name="HungryPersistenceUnit" value="ab0810d1-a846-4991-92da-d319358d0030" />
+        </datasource-mapping>
+        <naming-strategy-map />
+        <deploymentDescriptor name="persistence.xml" url="file://$MODULE_DIR$/src/META-INF/persistence.xml" />
+      </configuration>
+    </facet>
   </component>
   <component name="NewModuleRootManager" inherit-compiler-output="true">
     <exclude-output />
@@ -28,6 +45,24 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="EJB-3.2.2" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="GlassFish 5.201.0" level="application_server_libraries" />
-    <orderEntry type="library" name="Java EE 6-Java EE 6" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Java EE 6-Java EE 6" level="project" />
+    <orderEntry type="library" name="Richfaces-4.2.2" level="project" />
+    <orderEntry type="library" name="PrimeFaces-6.1" level="project" />
+    <orderEntry type="library" name="JAX-RS-2.1.1" level="project" />
+    <orderEntry type="library" name="Maven: javax:javaee-api:8.0" level="project" />
+    <orderEntry type="library" name="Maven: javax:javaee-api:8.0" level="project" />
+    <orderEntry type="library" name="Maven: javax:javaee-api:8.0" level="project" />
+    <orderEntry type="library" name="Maven: javax:javaee-api:8.0" level="project" />
+    <orderEntry type="library" name="Maven: javax:javaee-api:8.0" level="project" />
+    <orderEntry type="library" name="JPA 2.0-2.0" level="project" />
+    <orderEntry type="library" name="javax.jms-api.jar-2.0.1" level="project" />
+    <orderEntry type="library" name="JAX-RS-2.1.1" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: com.sun.mail:javax.mail:1.5.0" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: javax.activation:activation:1.1" level="project" />
+    <orderEntry type="library" name="Maven: org.glassfish.metro:webservices-rt:2.4.2" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: org.glassfish.metro:webservices-api:2.4.2" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: javax.annotation:javax.annotation-api:1.3.2" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: javax.activation:javax.activation-api:1.2.0" level="project" />
+    <orderEntry type="library" name="Maven: com.sun.xml.bind:jaxb-core:2.3.0" level="project" />
   </component>
 </module>
