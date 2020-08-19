@@ -1,7 +1,7 @@
 package web.backingBeans;
 
 import javax.ejb.*;
-import ejb.DatabaseGatewayBean;
+import ejb.RegistrationBean;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
@@ -19,8 +19,11 @@ public class RegisterBacking implements Serializable {
     private String password;
     private String permissions;
 
+    //Restaurant attributes
+    private String name;
+
     @EJB
-    private DatabaseGatewayBean databaseBean;
+    private RegistrationBean registrationBean;
 
     @PostConstruct
     private void initialise()
@@ -32,7 +35,7 @@ public class RegisterBacking implements Serializable {
     {
         String returnCode = "";
         HttpSession httpSession = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
-        if (databaseBean.searchForUserWithEmail(email, password))
+        if (registrationBean.searchForUserWithEmail(email, password))
         {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Registration failed", "User already exists!"));
             return returnCode;
@@ -41,9 +44,29 @@ public class RegisterBacking implements Serializable {
         switch(permissions)
         {
             case("Customer"):
-                databaseBean.createCustomer(email, password);
-                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Registration Successful", "Account created"));
-                returnCode = "customer?faces-redirect=true";
+                if (registrationBean.createCustomer(email, password))
+                {
+                    FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Registration Successful", "Account created"));
+                    returnCode = "customer?faces-redirect=true";
+                }
+                else
+                {
+                    FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Registration Unsuccessful", "Account creation failed"));
+                    returnCode = "";
+                }
+                break;
+
+            case("Restaurant"):
+                if (registrationBean.createRestaurant(email, password, name))
+                {
+                    FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Registration Successful", "Account created"));
+                    returnCode = "restaurant?faces-redirect=true";
+                }
+                else
+                {
+                    FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Registration Unsuccessful", "Account creation failed"));
+                    returnCode = "";
+                }
                 break;
         }
 
@@ -59,6 +82,10 @@ public class RegisterBacking implements Serializable {
 
     public void setPermissions(String permissions) {this.permissions = permissions;}
     public String getPermissions(){return this.permissions;}
+
+    public String getName() { return name; }
+
+    public void setName(String name) { this.name = name; }
 
     @Override
     public String toString()

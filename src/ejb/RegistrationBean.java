@@ -2,21 +2,33 @@ package ejb;
 
 import entities.UserEntity;
 import entities.CustomerEntity;
+import entities.RestaurantEntity;
 import javax.ejb.Stateless;
 import javax.persistence.*;
 
-@Stateless(name = "UserSearchEJB")
-public class DatabaseGatewayBean
+@Stateless(name = "DatabaseGatewayBean")
+public class RegistrationBean
 {
     @PersistenceContext(name = "HungryPersistenceUnit")
     private EntityManager entityManager;
 
-    public DatabaseGatewayBean(){}
+    public RegistrationBean(){}
 
     public boolean createCustomer(String email, String password) {
         try {
             CustomerEntity customer = new CustomerEntity(email, password);
             entityManager.persist(customer);
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public boolean createRestaurant(String email, String password, String name) {
+        try {
+            RestaurantEntity restaurant = new RestaurantEntity(email, password, name);
+            entityManager.persist(restaurant);
             return true;
         } catch (Exception e) {
             e.printStackTrace();
