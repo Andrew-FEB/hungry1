@@ -1,23 +1,18 @@
 package ejb;
 
-import entities.UserEntity;
-import entities.RestaurantEntity;
-import entities.FoodEntity;
-
-import javax.ejb.*;
+import javax.ejb.Stateful;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import java.util.List;
-import java.sql.Timestamp;
 
 @Stateful(name = "CustomerEJB")
-public class CustomerBean {
+public class OrderBean {
 
     @PersistenceContext(name = "HungryPersistenceUnit")
     private EntityManager entityManager;
 
-    public CustomerBean() {
+    public OrderBean() {
     }
 
     public List<String> getAvailableRestaurantNames()

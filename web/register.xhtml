@@ -11,7 +11,7 @@
     <title>Hungry registration</title>
 </h:head>
 <h:body>
-    <h:form>
+    <h:form id="registerForm">
         <table>
             <tr>
                 <td><h:outputText value="Enter Account type :" /></td>
@@ -20,44 +20,32 @@
                     <f:selectItem itemValue="Restaurant" itemLabel="Restaurant" />
                 </h:selectOneMenu></td>
             </tr>
-        </table>
+            <tr>
+                <td><h:outputText value="Enter your email address:" /></td>
+                <td><h:inputText id="email" value="#{registerBacking.email}"
+                                 required="true" requiredMessage="Please enter your email id" /></td>
+                <td><h:message for="email" style="color:red" /></td>
+            </tr>
+            <tr>
+                <td><h:outputText value="Enter Password :" /></td>
+                <td><h:inputSecret id="password" value="#{registerBacking.password}"
+                                   required="true" requiredMessage="Please enter your password" /></td>
+                <td><h:message for="password" style="color:red" /></td>
+            </tr>
+            <tr>
+                <td><h:outputText value="Enter your name:" /></td>
+                <td><h:inputText id="name" value="#{registerBacking.name}"
+                                 required="true" requiredMessage="Please enter your name"/></td>
+                <td><h:message for="name" style="color:red" /></td>
+            </tr>
+            <tr>
+                <td />
+                <td><h:commandButton value="Register" action="#{registerBacking.register}" /></td>
+            </tr>
+            <tr>
+                <td><h:outputLink value="index.xhtml">Home</h:outputLink></td>
+            </tr>
+            </table>
     </h:form>
-
-    <f:view>
-        <h:form id="registerForm">
-                <c:when test="${registerView.permissions == 'Customer'|| registerView.permissions == 'Restaurant'}">
-                    <table>
-                        <tr>
-                            <td><h:outputText value="Enter your email address:" /></td>
-                            <td><h:inputText id="email" value="#{registerBacking.email}"
-
-                                             required="true" requiredMessage="Please enter your email id" /></td>
-                            <td><h:message for="email" style="color:red" /></td>
-                        </tr>
-                        <tr>
-                            <td><h:outputText value="Enter Password :" /></td>
-                            <td><h:inputSecret id="password" value="#{registerBacking.password}"
-                                               required="true" requiredMessage="Please enter your password" /></td>
-                            <td><h:message for="password" style="color:red" /></td>
-                        </tr>
-                        <c:when test="${registerView.permissions == 'Restaurant'}">
-                            <tr>
-                                <td><h:outputText value="Enter your restaurant name:" /></td>
-                                <td><h:inputText id="name" value="#{registerBacking.name}"
-                                                 required="true" requiredMessage="Please enter your restaurant name"/></td>
-                                <td><h:message for="name" style="color:red" /></td>
-                            </tr>
-                        </c:when>
-                        <tr>
-                            <td />
-                            <td><h:commandButton value="Register" action="#{registerBacking.register}" /></td>
-                        </tr>
-                        <tr>
-                            <td><h:outputLink value="index.xhtml">Home</h:outputLink></td>
-                        </tr>
-                    </table>
-                </c:when>
-        </h:form>
-    </f:view>
 </h:body>
 </html>

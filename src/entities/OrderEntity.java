@@ -5,7 +5,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
 import java.util.*;
-
+import java.lang.*;
 
 
 @Entity
@@ -97,5 +97,15 @@ public class OrderEntity implements Serializable
         this.restaurantName = restaurantName;
     }
 
+    @Override
+    public String toString()
+    {
+        StringBuilder str = new StringBuilder();
+        str.append("Order costs "+cost+" and contains:\n");
+        for (FoodEntity item : items)
+        {
 
+        }
+        return str.toString();
+    }
 }

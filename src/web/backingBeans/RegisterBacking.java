@@ -5,21 +5,19 @@ import ejb.RegistrationBean;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
-import javax.faces.view.ViewScoped;
+import javax.enterprise.context.RequestScoped;
 import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpSession;
 import java.io.*;
 
 @ManagedBean
-@ViewScoped
+@RequestScoped
 public class RegisterBacking implements Serializable {
 
     //User attributes
     private String email;
     private String password;
     private String permissions;
-
-    //Restaurant attributes
     private String name;
 
     @EJB
@@ -44,7 +42,7 @@ public class RegisterBacking implements Serializable {
         switch(permissions)
         {
             case("Customer"):
-                if (registrationBean.createCustomer(email, password))
+                if (registrationBean.createCustomer(email, password, name))
                 {
                     FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Registration Successful", "Account created"));
                     returnCode = "customer?faces-redirect=true";
@@ -70,7 +68,7 @@ public class RegisterBacking implements Serializable {
                 break;
         }
 
-        httpSession.setAttribute("email", email);
+        httpSession.setAttribute("name", name);
         return returnCode;
     }
 
@@ -83,9 +81,9 @@ public class RegisterBacking implements Serializable {
     public void setPermissions(String permissions) {this.permissions = permissions;}
     public String getPermissions(){return this.permissions;}
 
+    public void setName(String name) { this.name = name; }
     public String getName() { return name; }
 
-    public void setName(String name) { this.name = name; }
 
     @Override
     public String toString()

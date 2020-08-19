@@ -13,16 +13,19 @@ public class UserEntity implements Serializable
     @Id
     protected String email;
 
+    protected String name;
+
     protected String password;
 
     protected String permissions;
 
     public UserEntity(){}
 
-    public UserEntity(String email, String password)
+    public UserEntity(String email, String password, String name)
     {
         this.email = email;
-        this.password = email;
+        this.password = password;
+        this.name = name;
     }
 
     @Override
@@ -34,7 +37,7 @@ public class UserEntity implements Serializable
         return Objects.equals(email, user.email);
     }
 
-    @Id
+    @Basic
     @Column(name = "email")
     public String getEmail()
     {
@@ -60,14 +63,18 @@ public class UserEntity implements Serializable
     public String getPermissions() {
         return permissions;
     }
-
     public void setPermissions(String permissions) {
         this.permissions = permissions;
     }
 
+    @Id
+    @Column(name = "name")
+    public String getName() { return name; }
+    public void setName(String name) { this.name = name; }
+
     @Override
     public String toString()
     {
-        return "User has email = "+email+" and password = "+password;
+        return "User has email = "+email+" and name = "+name+" and password = "+password;
     }
 }

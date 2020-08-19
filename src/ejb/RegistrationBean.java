@@ -14,9 +14,9 @@ public class RegistrationBean
 
     public RegistrationBean(){}
 
-    public boolean createCustomer(String email, String password) {
+    public boolean createCustomer(String email, String password, String name) {
         try {
-            CustomerEntity customer = new CustomerEntity(email, password);
+            CustomerEntity customer = new CustomerEntity(email, password, name);
             entityManager.persist(customer);
             return true;
         } catch (Exception e) {
@@ -40,7 +40,7 @@ public class RegistrationBean
     {
         try
         {
-            TypedQuery<UserEntity> q = entityManager.createQuery("SELECT u from Users where u.email = :userEmail AND u.password = :userPassword", UserEntity.class)
+            TypedQuery<UserEntity> q = entityManager.createQuery("SELECT * from users where u.email = :userEmail AND u.password = :userPassword", UserEntity.class)
             .setParameter("userEmail", email)
             .setParameter("userPassword", password);
             UserEntity user = q.getSingleResult();

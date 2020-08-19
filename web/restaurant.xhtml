@@ -6,10 +6,35 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:p="http://primefaces.org/ui">
-<head>
+<h:head>
     <title>Restaurant</title>
-</head>
-<body>
+</h:head>
+<h:body>
+    <f:view>
+        <h:form id="addFood">
+            <table>
+                <tr>
+                    <td><h:outputText value="Enter food name" /></td>
+                    <td><h:inputText id="name" value="#{restaurantBacking.name}"
 
-</body>
+                                     required="true" requiredMessage="Please enter your email id" /></td>
+                    <td><h:message for="email" style="color:red" /></td>
+                </tr>
+                <tr>
+                    <td><h:outputText value="Enter Password :" /></td>
+                    <td><h:inputSecret id="password" value="#{restaurantBacking.password}"
+                                       required="true" requiredMessage="Please enter your password" /></td>
+                    <td><h:message for="password" style="color:red" /></td>
+                </tr>
+                <tr>
+                    <td />
+                    <td><h:commandButton value="Register" action="#{restaurantBacking.register}" /></td>
+                </tr>
+                <tr>
+                    <td><h:outputLink value="index.xhtml">Home</h:outputLink></td>
+                </tr>
+            </table>
+        </h:form>
+    </f:view>
+</h:body>
 </html>

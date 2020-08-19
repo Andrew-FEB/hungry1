@@ -6,21 +6,19 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
 
-
 @Entity
-@Table(name = "orders", schema = "hungry")
+@Table(name = "restaurants", schema = "hungry")
+@DiscriminatorValue(value = "restaurant")
 public class RestaurantEntity extends UserEntity
 {
-    private String name;
     private List<FoodEntity> foods;
 
     public RestaurantEntity(){}
 
     public RestaurantEntity(String email, String password, String name)
     {
-        super(email, password);
+        super(email, password, name);
         super.permissions = "Restaurant";
-        this.name = name;
     }
 
     @Override
@@ -30,16 +28,6 @@ public class RestaurantEntity extends UserEntity
         if (o==null || getClass() != o.getClass()) return false;
         RestaurantEntity restaurant = (RestaurantEntity) o;
         return (Objects.equals(name, restaurant.name));
-    }
-
-    @Id
-    @Column(name = "name")
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     @OneToMany(cascade = CascadeType.ALL)

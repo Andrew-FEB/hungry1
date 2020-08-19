@@ -17,12 +17,18 @@ public class RestaurantBacking implements Serializable {
 
     //User attributes
     private String email;
+    private String restaurantName;
+
+    //Food attributes
+    String foodName;
+    double foodCost;
 
     @PostConstruct
     private void initialise()
     {
         HttpSession httpSession = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
         email = (String) httpSession.getAttribute("email");
+        restaurantName = (String) httpSession.getAttribute("name");
     }
 
     public String getEmail() {

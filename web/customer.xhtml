@@ -9,31 +9,24 @@
       xmlns:p="http://primefaces.org/ui">
 <head>
     <title>"Customer dashboard"</title>
-    <h:outputText value="Hello there #{customerBacking.email}" />
+    <h:outputText value="Hello there #{customerBacking.name}" />
 </head>
-<body>
-<f:view>
-    <h:body>
-        <f:view>
-            <h:form id="Let's order something">
-
-                <table>
-                    <tr>
-                        <td><h:outputText value="Select a restaurant whose menu you'd like to see:" /></td>
-                        <h:selectOneMenu value="#{customerBacking.userName}">
-                            <f:selectItems value="#{customerBacking.restaurants}"/>
-                        </h:selectOneMenu></td>
-                    <tr>
-                        <td />
-                        <td><h:commandButton value="Register" action="#{registerBacking.register}" /></td>
-                    </tr>
-                    <tr>
-                        <td><h:outputLink value="index.xhtml">Home</h:outputLink></td>
-                    </tr>
-                </table>
-            </h:form>
-        </f:view>
-    </h:body>
-</f:view>
-</body>
+<h:body>
+        <h:form id="menus">
+            <table>
+                <tr>
+                    <td><h:outputText value="Select a restaurant whose menu you'd like to see:" /></td>
+                    <td><h:selectOneMenu value="#{customerBacking.restaurantName}">
+                        <f:selectItems value="#{customerBacking.restaurants}"/>
+                    </h:selectOneMenu></td>
+                </tr>
+                <tr>
+                    <td><h:commandButton value="Inspect menu" action="#{customerBacking.order}" /></td>
+                </tr>
+                <tr>
+                    <td><h:outputLink value="index.xhtml">Home</h:outputLink></td>
+                </tr>
+            </table>
+        </h:form>
+</h:body>
 </html>

@@ -6,7 +6,8 @@ import entities.RestaurantEntity;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.faces.view.ViewScoped;
+import javax.faces.application.FacesMessage;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 import java.io.Serializable;
@@ -14,22 +15,35 @@ import javax.faces.bean.ManagedBean;
 import java.util.*;
 
 @ManagedBean
-@ViewScoped
+@SessionScoped
 public class CustomerBacking implements Serializable {
 
     //User attributes
-    private String email;
+    private String name;
 
     @EJB
     private CustomerBean customer;
     private List<String> restaurants;
+    private String restaurantName;
 
     @PostConstruct
     private void initialise()
     {
         HttpSession httpSession = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
-        email = (String) httpSession.getAttribute("email");
+        name = (String) httpSession.getAttribute("name");
         restaurants = customer.getAvailableRestaurantNames();
+        restaurantName = "";
+    }
+
+    public String Order()
+    {
+        HttpSession httpSession = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+        String returnCode = "";
+        if (!(restaurantName.equals(""))) {
+            httpSession.setAttribute("restaurantName", restaurantName);
+            returnCode = "order?faces-redirect=true";
+        }
+        return returnCode;
     }
 
     public List<String> getRestaurants() {
@@ -40,20 +54,12 @@ public class CustomerBacking implements Serializable {
         this.restaurants = restaurants;
     }
 
-    public String getEmail() {
-        return email;
+    public String getName() {
+        return name;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public CustomerBean getCustomer() {
-        return customer;
-    }
-
-    public void setCustomer(CustomerBean customer) {
-        this.customer = customer;
+    public void setName(String name) {
+        this.name = name;
     }
 
 }

@@ -12,20 +12,10 @@ public class CustomerEntity extends UserEntity
     private List<OrderEntity> pastOrders;
 
     public CustomerEntity() {super();}
-    public CustomerEntity(String email, String password)
+    public CustomerEntity(String email, String password, String name)
     {
-        super(email, password);
+        super(email, password, name);
         super.permissions = "Customer";
-    }
-
-    @Basic
-    @Column(name = "permissions")
-    public String getPermissions() {
-        return permissions;
-    }
-
-    public void setPermissions(String permissions) {
-        this.permissions = permissions;
     }
 
     @OneToMany
