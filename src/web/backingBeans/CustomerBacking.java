@@ -1,13 +1,10 @@
 package web.backingBeans;
 
 import ejb.CustomerBean;
-import ejb.RegistrationBean;
-import entities.RestaurantEntity;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.faces.application.FacesMessage;
-import javax.enterprise.context.SessionScoped;
+import javax.enterprise.context.*;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 import java.io.Serializable;
@@ -35,7 +32,7 @@ public class CustomerBacking implements Serializable {
         restaurantName = "";
     }
 
-    public String Order()
+    public String order()
     {
         HttpSession httpSession = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
         String returnCode = "";
@@ -60,6 +57,14 @@ public class CustomerBacking implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getRestaurantName() {
+        return restaurantName;
+    }
+
+    public void setRestaurantName(String restaurantName) {
+        this.restaurantName = restaurantName;
     }
 
 }

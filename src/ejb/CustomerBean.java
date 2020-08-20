@@ -1,51 +1,39 @@
 package ejb;
 
-import entities.UserEntity;
-import entities.RestaurantEntity;
-import entities.FoodEntity;
+import entities.Restaurant;
 
 import javax.ejb.*;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
-import java.util.List;
-import java.sql.Timestamp;
+import javax.persistence.Query;
+import java.util.*;
 
-@Stateful(name = "CustomerEJB")
+@Stateless(name = "CustomerEJB")
 public class CustomerBean {
 
     @PersistenceContext(name = "HungryPersistenceUnit")
     private EntityManager entityManager;
 
-    public CustomerBean() {
-    }
+    public CustomerBean() { }
 
     public List<String> getAvailableRestaurantNames()
     {
         try
         {
-            TypedQuery<String> q = entityManager.createQuery("SELECT r.name from restaurants", String.class);
-            List<String> restaurants = q.getResultList();
-            return restaurants;
+            Query q = entityManager.createNativeQuery("SELECT * FROM users WHERE permissions = 'Restaurant'", Restaurant.class);
+            List<Restaurant> restaurants = q.getResultList();
+            List<String> output = new ArrayList<>();
+            for (Restaurant rest : restaurants)
+            {
+                output.add(rest.getName());
+            }
+            return output;
         }
         catch(Exception e)
         {
+            e.printStackTrace();
             return null;
         }
     }
 
-    public List<String> getFoodsForRestaurant(String name)
-    {
-        try
-        {
-            TypedQuery<String> q = entityManager.createQuery("SELECT f.name from restaurant_to_foods where name  = :name", String.class)
-                    .setParameter(":name", name);
-            List<String> foodItems = q.getResultList();
-            return foodItems;
-        }
-        catch(Exception e)
-        {
-            return null;
-        }
-    }
 }

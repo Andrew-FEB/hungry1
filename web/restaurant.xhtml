@@ -15,20 +15,23 @@
             <table>
                 <tr>
                     <td><h:outputText value="Enter food name" /></td>
-                    <td><h:inputText id="name" value="#{restaurantBacking.name}"
-
-                                     required="true" requiredMessage="Please enter your email id" /></td>
-                    <td><h:message for="email" style="color:red" /></td>
+                    <td><h:inputText id="fname" value="#{restaurantBacking.foodName}"
+                                     required="true" requiredMessage="Please enter name of meal"/></td>
+                    <td><h:message for="fname" style="color:red" /></td>
                 </tr>
                 <tr>
-                    <td><h:outputText value="Enter Password :" /></td>
-                    <td><h:inputSecret id="password" value="#{restaurantBacking.password}"
-                                       required="true" requiredMessage="Please enter your password" /></td>
-                    <td><h:message for="password" style="color:red" /></td>
+                    <td><h:outputText value="Enter food price" /></td>
+                    <td><h:inputText id="fcost" value="#{restaurantBacking.foodCost}"
+                                     required="true" requiredMessage="Please enter cost of meal"/></td>
+                    <td><h:message for="fcost" style="color:red" /></td>
                 </tr>
+                <tr>
+                    <td><p:growl id="msgs" showDetail="true" skipDetailIfEqualsSummary="true" /></td>
+                </tr>
+
                 <tr>
                     <td />
-                    <td><h:commandButton value="Register" action="#{restaurantBacking.register}" /></td>
+                    <td><h:commandButton value="Add" action="#{restaurantBacking.addFood}" /></td>
                 </tr>
                 <tr>
                     <td><h:outputLink value="index.xhtml">Home</h:outputLink></td>

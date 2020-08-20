@@ -1,8 +1,6 @@
 package entities;
-import entities.FoodEntity;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.Objects;
 import java.util.*;
 import java.lang.*;
@@ -10,19 +8,19 @@ import java.lang.*;
 
 @Entity
 @Table(name = "orders", schema = "hungry")
-public class OrderEntity implements Serializable
+public class Order
 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int orderID;
     private String customerEmail;
     private double cost;
-    private List<FoodEntity> items;
+    private List<Food> items;
     private String restaurantName;
 
-    public OrderEntity(){}
+    public Order(){}
 
-    public OrderEntity(String customerEmail, double cost, List<FoodEntity> items, String restaurantName)
+    public Order(String customerEmail, double cost, List<Food> items, String restaurantName)
     {
         this.customerEmail = customerEmail;
         this.cost = cost;
@@ -35,7 +33,7 @@ public class OrderEntity implements Serializable
     {
         if (this==o) return true;
         if (o==null || getClass() != o.getClass()) return false;
-        OrderEntity order = (OrderEntity) o;
+        Order order = (Order) o;
         return (Objects.equals(orderID, order.orderID));
 
     }
@@ -53,17 +51,17 @@ public class OrderEntity implements Serializable
     @OneToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "order_to_items",
             joinColumns = @JoinColumn(name = "orderid"))
-    public List<FoodEntity> getItems()
+    public List<Food> getItems()
     {
         return items;
     }
 
-    public void setItems(List<FoodEntity> items)
+    public void setItems(List<Food> items)
     {
         this.items=items;
     }
 
-    public void addItem(FoodEntity item) {
+    public void addItem(Food item) {
         this.items.add(item);
     }
 
@@ -102,7 +100,7 @@ public class OrderEntity implements Serializable
     {
         StringBuilder str = new StringBuilder();
         str.append("Order costs "+cost+" and contains:\n");
-        for (FoodEntity item : items)
+        for (Food item : items)
         {
 
         }

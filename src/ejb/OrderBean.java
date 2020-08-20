@@ -1,13 +1,16 @@
 package ejb;
+import entities.Food;
 
-import javax.ejb.Stateful;
+import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
-import java.util.List;
+import javax.persistence.Query;
+import java.util.*;
 
-@Stateful(name = "CustomerEJB")
+@Stateless(name = "OrderEJB")
 public class OrderBean {
+
+    List<String> foods;
 
     @PersistenceContext(name = "HungryPersistenceUnit")
     private EntityManager entityManager;
@@ -15,32 +18,25 @@ public class OrderBean {
     public OrderBean() {
     }
 
-    public List<String> getAvailableRestaurantNames()
-    {
-        try
-        {
-            TypedQuery<String> q = entityManager.createQuery("SELECT r.name from restaurants", String.class);
-            List<String> restaurants = q.getResultList();
-            return restaurants;
-        }
-        catch(Exception e)
-        {
-            return null;
-        }
-    }
-
     public List<String> getFoodsForRestaurant(String name)
     {
         try
         {
-            TypedQuery<String> q = entityManager.createQuery("SELECT f.name from restaurant_to_foods where name  = :name", String.class)
+            Query q = entityManager.createNativeQuery("SELECT r.foods FROM foods WHERE r.name = :name", Food.class)
                     .setParameter(":name", name);
-            List<String> foodItems = q.getResultList();
-            return foodItems;
+            List<Food> foodItems = q.getResultList();
+            List<String> names = new ArrayList<>();
+            for (Food food : foodItems)
+            {
+                names.add(food.getName());
+            }
+            return names;
         }
         catch(Exception e)
         {
+            e.printStackTrace();
             return null;
         }
     }
+
 }
